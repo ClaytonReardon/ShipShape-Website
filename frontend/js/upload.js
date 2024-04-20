@@ -12,13 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fetch(localFunctionUrl, {
             method: 'POST',
-            // Optional headers removed for simplicity
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.text();
+        })
         .then(data => {
             console.log('Success:', data);
-            alert('File uploaded successfully!');
+            const instructElement = document.getElementById('upload-instruct');
+            instructElement.innerHTML = `Access your uploaded file here: <a href="${data}" target="_blank">Download Link`;
         })
         .catch((error) => {
             console.error('Error:', error);

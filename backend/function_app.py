@@ -2,7 +2,7 @@ import os, uuid
 import azure.functions as func
 import logging
 from azure.identity import DefaultAzureCredential
-from azure.storage.blob import BlobServiceClient, BlobClient, generate_blob_sas, BlobSasPermissions
+from azure.storage.blob import BlobServiceClient, BlobClient, generate_blob_sas, BlobSasPermissions, UserDelegationKey
 import datetime
 import magic
 from pathvalidate import sanitize_filename
@@ -10,7 +10,12 @@ from pathvalidate import sanitize_filename
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
 
 # Function to create SAS token 
-def create_service_sas_blob(blob_client: BlobClient, account_key: str, blob_name: str):
+def create_service_sas_blob(blob_client: BlobClient, blob_service_client: BlobServiceClient, blob_name: str):
+    # Get user delegation key
+    udk_start_time = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=5)
+    udk_expiry_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1)
+    user_delegation_key = blob_service_client.get_user_delegation_key(udk_start_time, udk_expiry_time)
+
     # Create SAS token that's valid for one day
     expiry_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1)
 
@@ -18,9 +23,11 @@ def create_service_sas_blob(blob_client: BlobClient, account_key: str, blob_name
         account_name=blob_client.account_name,
         container_name=blob_client.container_name,
         blob_name=blob_name,
-        account_key=account_key,
+        #account_key=account_key,
         permission=BlobSasPermissions(read=True),
-        expiry=expiry_time,
+        #expiry=expiry_time,
+        expiry=udk_expiry_time,
+        user_delegation_key=user_delegation_key,
     )
 
     return sas_token
@@ -82,11 +89,11 @@ def fileupload(req: func.HttpRequest) -> func.HttpResponse:
         blob_client.upload_blob(file.stream, overwrite=True)
 
         # Print SAS Token
-        sas_token = create_service_sas_blob(blob_client, os.getenv('STORAGE_KEY'), file_name)
+        sas_token = create_service_sas_blob(blob_client, blob_service_client, file_name)
         sas_url = f"{blob_client.url}?{sas_token}"
         print("\nSAS Token:\n", sas_url)
 
-        return func.HttpResponse(sas_url, status_code=200)
+        return func.HttpResponse(sas_url, status_code=200, headers={"Content-Type": "text/plain"})
 
     except Exception as ex:
         print('Exception:')

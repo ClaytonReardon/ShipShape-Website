@@ -244,6 +244,21 @@ a:focus {
   border-radius: 100%;
   opacity: 1;
 }
+#upload-instruct a {
+    background: none;  /* No background */
+    border: none;      /* No border */
+    color: #00ff00;    /* Green text */
+    text-decoration: none; /* If you want it underlined */
+    padding: 0;        /* No padding */
+    font-family: inherit; /* Inherits the font from the parent element */
+    font-size: inherit; /* Inherits the font size from the parent element */
+    display: inline;   /* Ensures it doesn't display like a block element */
+    margin: 0;         /* No margin */
+    cursor: pointer;   /* Shows a pointer on hover */
+}
+#upload-instruct a:hover {
+  text-decoration: underline; /* This will underline the text on hover */
+}
 
 .do_section .heading_container {
   -webkit-box-align: center;
@@ -321,6 +336,7 @@ a:focus {
 .do_section .do_container .arrow-end::before {
   background-image: url(../images/arrow-end.png);
 }
+
 
 .who_section .row {
   -webkit-box-align: center;
