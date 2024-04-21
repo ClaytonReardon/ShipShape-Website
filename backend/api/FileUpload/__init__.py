@@ -7,7 +7,7 @@ import datetime
 import magic
 from pathvalidate import sanitize_filename
 
-app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
 # Function to create SAS token 
 def create_service_sas_blob(blob_client: BlobClient, blob_service_client: BlobServiceClient, blob_name: str):
