@@ -33,16 +33,10 @@ def create_service_sas_blob(blob_client: BlobClient, blob_service_client: BlobSe
 def sanitize_and_format_filename(original_name):
     # Sanitize filename to remove invalid characters
     sanitized = sanitize_filename(original_name, platform="auto")
-
-    # Split the filename from its extension
-    parts = sanitized.rsplit('.', 1)
-    if len(parts) == 2:
-        base, ext = parts
-        base = base.replace('.', '')  # Remove all dots from the base part
-    else:
-        # If there's no extension dot, remove all dots
-        print("Filename did not have extension")
-    
+     # Split the filename from its extension
+    base, ext = sanitized.rsplit('.', 1)
+    # Remove all dots from the base part
+    base = base.replace('.', '')
     # Append a UUID to ensure uniqueness
     sanitized = f"{base}-{uuid.uuid4().hex[:6]}.{ext}"
 
@@ -53,7 +47,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("\nPython HTTP trigger function processed a request\n")
 
     try:
-        print("\nConnecting to Azure Blob Storage\n")
+        logging.info("\nConnecting to Azure Blob Storage\n")
         
         # Connect to Blob Storage
         account_url = os.getenv('ACCOUNT_NAME')
@@ -62,7 +56,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         container_name = os.getenv('CONT_NAME')
 
         # Get file from request
-        print("\nGetting file from POST request & renaming\n")
+        logging.info("\nGetting file from POST request & renaming\n")
         file = req.files['file']
         original_name = file.filename
 
@@ -83,13 +77,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         blob_client = blob_service_client.get_blob_client(container=container_name, blob=file_name)
 
         # Upload created file
-        print("\nUploading file & creating SAS token\n")
+        logging.info("\nUploading file & creating SAS token\n")
         blob_client.upload_blob(file.stream, overwrite=True)
 
         # Print SAS Token
         sas_token = create_service_sas_blob(blob_client, blob_service_client, file_name)
         sas_url = f"{blob_client.url}?{sas_token}"
-        print("\nSAS Token:\n", sas_url)
 
         return func.HttpResponse(sas_url, status_code=200, headers={"Content-Type": "text/plain"})
 

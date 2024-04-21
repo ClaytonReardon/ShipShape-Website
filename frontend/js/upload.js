@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.append('file', file);
 
         // Display a loading message
-        // const instructElement = document.getElementById('upload-instruct');
-        // instructElement.innerHTML = "Report recieved. We are generating your link...";
+        const instructElement = document.getElementById('upload-instruct');
+        instructElement.innerHTML = "Report recieved. We are generating your link...";
 
         fetch(localFunctionUrl, {
             method: 'POST',
