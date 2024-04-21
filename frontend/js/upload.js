@@ -1,4 +1,4 @@
-const localFunctionUrl = "https://shipshapefa.azurewebsites.net/api/FileUpload?code=SHnTCQ3i-svUW4j2hBGC1UON5_-YxvTT4Ytl6aR62ZbwAzFuosLhww==";
+const functionUrl = "https://shipshapefa.azurewebsites.net/api/FileUpload?code=SHnTCQ3i-svUW4j2hBGC1UON5_-YxvTT4Ytl6aR62ZbwAzFuosLhww==";
 
 // upload.js
 document.addEventListener('DOMContentLoaded', function() {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const instructElement = document.getElementById('upload-instruct');
         instructElement.innerHTML = "Report recieved. We are generating your link...";
 
-        fetch(localFunctionUrl, {
+        fetch(functionUrl, {
             method: 'POST',
             body: formData
         })
