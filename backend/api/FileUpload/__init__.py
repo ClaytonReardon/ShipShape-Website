@@ -7,13 +7,13 @@ import datetime
 import magic
 from pathvalidate import sanitize_filename
 
-app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
 # Function to create SAS token 
 def create_service_sas_blob(blob_client: BlobClient, blob_service_client: BlobServiceClient, blob_name: str):
     # Get user delegation key
-    udk_start_time = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=5)
-    udk_expiry_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=1)
+    udk_start_time = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(minutes=15)
+    udk_expiry_time = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(minutes=1)
     user_delegation_key = blob_service_client.get_user_delegation_key(udk_start_time, udk_expiry_time)
 
     # Create SAS token that's valid for one day
@@ -23,9 +23,7 @@ def create_service_sas_blob(blob_client: BlobClient, blob_service_client: BlobSe
         account_name=blob_client.account_name,
         container_name=blob_client.container_name,
         blob_name=blob_name,
-        #account_key=account_key,
         permission=BlobSasPermissions(read=True),
-        #expiry=expiry_time,
         expiry=udk_expiry_time,
         user_delegation_key=user_delegation_key,
     )
@@ -50,8 +48,8 @@ def sanitize_and_format_filename(original_name):
 
     return sanitized
 
-@app.route(route="fileupload", methods=['POST'])
-def fileupload(req: func.HttpRequest) -> func.HttpResponse:
+#@app.route(route="fileupload", methods=['POST'])
+def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("\nPython HTTP trigger function processed a request\n")
 
     try:
@@ -61,7 +59,7 @@ def fileupload(req: func.HttpRequest) -> func.HttpResponse:
         account_url = os.getenv('ACCOUNT_NAME')
         default_credential = DefaultAzureCredential()
         blob_service_client = BlobServiceClient(account_url, credential=default_credential)
-        container_name = os.getenv('CONTAINER_NAME')
+        container_name = os.getenv('CONT_NAME')
 
         # Get file from request
         print("\nGetting file from POST request & renaming\n")

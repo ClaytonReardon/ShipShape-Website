@@ -1,4 +1,4 @@
-const localFunctionUrl = "http://localhost:7071/api/fileupload";
+const localFunctionUrl = "https://shipshapefa.azurewebsites.net/api/FileUpload?code=SHnTCQ3i-svUW4j2hBGC1UON5_-YxvTT4Ytl6aR62ZbwAzFuosLhww==";
 
 // upload.js
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const file = fileInput.files[0];
         const formData = new FormData();
         formData.append('file', file);
+
+        // Display a loading message
+        // const instructElement = document.getElementById('upload-instruct');
+        // instructElement.innerHTML = "Report recieved. We are generating your link...";
 
         fetch(localFunctionUrl, {
             method: 'POST',
