@@ -1,4 +1,4 @@
-const functionUrl = "https://shipshapefa.azurewebsites.net/api/FileUpload?code=SHnTCQ3i-svUW4j2hBGC1UON5_-YxvTT4Ytl6aR62ZbwAzFuosLhww==";
+const functionUrl = "https://shipshapefa.azurewebsites.net/api/fileupload?code=SHnTCQ3i-svUW4j2hBGC1UON5_-YxvTT4Ytl6aR62ZbwAzFuosLhww%3D%3D";
 
 // upload.js
 document.addEventListener('DOMContentLoaded', function() {

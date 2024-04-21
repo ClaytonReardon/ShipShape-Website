@@ -6,6 +6,7 @@ from azure.storage.blob import BlobServiceClient, BlobClient, generate_blob_sas,
 import datetime
 import magic
 from pathvalidate import sanitize_filename
+import requests
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
@@ -84,8 +85,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         sas_token = create_service_sas_blob(blob_client, blob_service_client, file_name)
         sas_url = f"{blob_client.url}?{sas_token}"
 
+        # Send JSON to Logic App
+        file.stream.seek(0) # Reset stream to read content
+        json_data = file.stream.read().decode('utf-8') # Read and decode stream
+        logic_app_url = os.getenv('LOGIC_APP_URL')
+        response = requests.post(logic_app_url, headers={'Content-Type': 'application/json'}, data=json_data)
+        if response.status_code != 202:
+            logging.error("Error sending data to Logic App: " + response.text)
+            return func.HttpResponse("Failed to send data to Logic App.", status_code=500)
+
         return func.HttpResponse(sas_url, status_code=200, headers={"Content-Type": "text/plain"})
 
     except Exception as ex:
-        print('Exception:')
+        logging.exception('Exception occured: ' + str(ex))
         return func.HttpResponse("Failed to process the upload and generate SAS token.", status_code=500)
