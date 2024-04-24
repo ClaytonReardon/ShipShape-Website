@@ -1,0 +1,17 @@
+{
+    "ShipName": "CosmicCommander",
+    "Repairs Needed": {
+        "Thrusters": true,
+        "Blast Shield": true,
+        "Landing Gear": true,
+        "Warp Drive": true,
+        "Radar": true
+    },
+    "Supplies Needed": {
+        "Rations": "12",
+        "Laser Crystals": "3",
+        "Droid Silicon": "6",
+        "Capacitors": "27",
+        "Fuel (Liters)": "275"
+    }
+}

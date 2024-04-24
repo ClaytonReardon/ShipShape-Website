@@ -1,0 +1,3 @@
+[submodule "bicep"]
+	path = bicep
+	url = git@github.com:ClaytonReardon/VMFleetCommander-AzureProject.git
