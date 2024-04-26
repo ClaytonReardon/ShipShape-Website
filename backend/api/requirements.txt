@@ -7,3 +7,6 @@ azure-identity
 azure-storage-blob
 python-magic
 pathvalidate
+pyodbc
+requests
+bcrypt

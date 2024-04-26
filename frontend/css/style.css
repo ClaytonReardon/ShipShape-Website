@@ -217,15 +217,6 @@ a:focus {
   font-size: 3rem;
 }
 
-.slider_section .detail-box a {
-  display: inline-block;
-  padding: 10px 55px;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
-  color: #000000;
-  border-radius: 20px 20px 0 20px;
-  margin-top: 35px;
-}
 
 .slider_section .detail-box a:hover {
   background-color: transparent;
@@ -244,6 +235,30 @@ a:focus {
   border-radius: 100%;
   opacity: 1;
 }
+
+.resupply-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+
+.resupply-item {
+  margin: 0 10px;
+  text-align: center;
+  outline: none;
+}
+
+.resupply-item a {
+  color: #ffffff;
+}
+.resupply-item a:hover {
+  color: #00ff00;
+  text-decoration: underline;
+}
+
+
 #upload-instruct a {
     background: none;  /* No background */
     border: none;      /* No border */

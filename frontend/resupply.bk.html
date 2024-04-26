@@ -12,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>ShipShape Repairs</title>
+  <title>ShipShape</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
@@ -31,7 +31,7 @@
   <link href="css/responsive.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="sub_page">
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
@@ -62,7 +62,10 @@
               <div class="user_option">
                 <a href="">
                   <img src="images/user.png" alt="">
-                </a>              
+                </a>
+                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+                </form>
               </div>
             </div>
           </div>
@@ -70,32 +73,79 @@
       </div>
     </header>
     <!-- end header section -->
+  </div>
 
+  <!-- do section -->
 
-    <!-- slider section -->
-<section class="slider_section position-relative">
-  <div class="container">
-    <!-- Static content -->
-    <div class="row justify-content-center align-items-center">
-      <div class="col-md-8 text-center">
-        <div class="detail-box">
-          <h2>Upgrades & Maintence</h2>
-          <form id="upload-form" enctype="multipart/form-data" class="upload-form">
-            <p class="upload-msg">Upload your starship report here</p>
-            <input type="file" name="file" id="starshipReport" required>
-            <button type="submit" class="upload-btn">Upload Report</button>
-            <p id="upload-instruct" class="upload-instruct">Your report will be sent to our engineers and
-              you will recieve a time sensitive link to your report
-            </p>
-          </form>
+  <section class="do_section layout_padding">
+    <div class="hero_area">
+      <div class="container">
+        <div class="heading_container">
+          <h2>
+            What we do
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna
+          </p>
+        </div>
+        <div class="do_container">
+          <div class="box arrow-start arrow_bg">
+            <div class="img-box">
+              <img src="images/d-1.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h6>
+                Marketing
+              </h6>
+            </div>
+          </div>
+          <div class="box arrow-middle arrow_bg">
+            <div class="img-box">
+              <img src="images/d-2.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h6>
+                Development
+              </h6>
+            </div>
+          </div>
+          <div class="box arrow-middle arrow_bg">
+            <div class="img-box">
+              <img src="images/d-3.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h6>
+                Html5
+              </h6>
+            </div>
+          </div>
+          <div class="box arrow-end arrow_bg">
+            <div class="img-box">
+              <img src="images/d-4.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h6>
+                Css
+              </h6>
+            </div>
+          </div>
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/d-5.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h6>
+                Wordpress
+              </h6>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- end slider section -->
+  </section>
 
-  </div>
+  <!-- end do section -->
 
   <!-- footer section -->
   <section class="container-fluid footer_section">
@@ -108,8 +158,29 @@
 
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.js"></script>
-  <!-- File upload script -->
-  <script src="js/upload.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- owl carousel script 
+    -->
+  <script type="text/javascript">
+    $(".owl-carousel").owlCarousel({
+      loop: true,
+      margin: 0,
+      navText: [],
+      center: true,
+      autoplay: true,
+      autoplayHoverPause: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        1000: {
+          items: 3
+        }
+      }
+    });
+  </script>
+  <!-- end owl carousel script -->
 
 </body>
 
