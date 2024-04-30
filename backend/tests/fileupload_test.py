@@ -7,9 +7,7 @@ import os
 import json
 
 def setUpModule():  # Load settings once for all tests in this module
-    with open('api/local.settings.json', 'r') as config_file:
-        config = json.load(config_file)
-    os.environ['LOGIC_APP_URL'] = config['Values']['LOGIC_APP_URL']
+    os.environ['LOGIC_APP_URL'] = os.getenv('LOGIC_APP_URL')
 
 class TestFileUploadFunction(unittest.TestCase):
     @patch('api.FileUpload.__init__.requests.post')
