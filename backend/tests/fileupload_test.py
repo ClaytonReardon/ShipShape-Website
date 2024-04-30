@@ -6,9 +6,6 @@ import re
 import os
 import json
 
-def setUpModule():  # Load settings once for all tests in this module
-    os.environ['LOGIC_APP_URL'] = os.getenv('LOGIC_APP_URL')
-
 class TestFileUploadFunction(unittest.TestCase):
     @patch('api.FileUpload.__init__.requests.post')
     @patch('api.FileUpload.__init__.magic')
