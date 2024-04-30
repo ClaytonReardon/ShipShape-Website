@@ -57,8 +57,8 @@
                 </li>
               </ul>
               <div class="user_option">
-                <a href="">
-                  <img src="images/user.png" alt="">
+                <a href="login.html">
+                  <img src="images/space-helmet.png" style="height: 35px; width: auto;" alt="">
                 </a>              
               </div>
             </div>
@@ -88,6 +88,7 @@
                     <p id="stock_rations">In stock: Loading...</p>
                     <input type="number" id="rationQty" name="rationQty" min="1" placeholder="Qty">
                     <button onclick="orderItem('Rations', rationQty.value)">Order</button>
+                    <div id="message_rations" class="form-text" style="font-size: 24px; text-align: center; color: green; min-height: 40px;"></div>
                   </div>
                   <div class="resupply-item">
                     <img src="images/laser_crystal.jpg" height="300" width="auto">
@@ -95,6 +96,7 @@
                     <p id="stock_laser_crystals">In stock: Loading...</p>
                     <input type="number" id="laserCrystalQty" name="laserCrystalQty" min="1" placeholder="Qty">
                     <button onclick="orderItem('laser_crystals', laserCrystalQty.value)">Order</button>
+                    <div id="message_laser_crystals" class="form-text" style="font-size: 24px; text-align: center; color: green; min-height: 40px;"></div>
                   </div>
                   <div class="resupply-item">
                     <img src="images/silicon_wafer.png" height="300" width="auto">
@@ -102,6 +104,7 @@
                     <p id="stock_droid_silicon">In stock: Loading...</p>
                     <input type="number" id="droidSiliconQty" name="droidSiliconQty" min="1" placeholder="Qty">
                     <button onclick="orderItem('droid_silicon', droidSiliconQty.value)">Order</button>
+                    <div id="message_droid_silicon" class="form-text" style="font-size: 24px; text-align: center; color: green; min-height: 40px;"></div>
                   </div>
                   <div class="resupply-item">
                     <img src="images/capacitor.jpeg" height="300" width="auto">
@@ -109,6 +112,7 @@
                     <p id="stock_capacitors">In stock: Loading...</p>
                     <input type="number" id="capacitorQty" name="capacitorQty" min="1" placeholder="Qty">
                     <button onclick="orderItem('capacitors', capacitorQty.value)">Order</button>
+                    <div id="message_capacitors" class="form-text" style="font-size: 24px; text-align: center; color: green; min-height: 40px;"></div>
                   </div>
                   <div class="resupply-item">
                     <img src="images/fuel.jpeg" height="300" width="auto">
@@ -116,6 +120,7 @@
                     <p id="stock_fuel">In stock: Loading...</p>
                     <input type="number" id="rocketFuelQty" name="rocketFuelQty" min="1" placeholder="Qty">
                     <button onclick="orderItem('fuel', rocketFuelQty.value)">Order</button>
+                    <div id="message_fuel" class="form-text" style="font-size: 24px; text-align: center; color: green; min-height: 40px;"></div>
                   </div>
                 </div>
               </div>

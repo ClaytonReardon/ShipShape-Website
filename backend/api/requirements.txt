@@ -9,4 +9,5 @@ python-magic
 pathvalidate
 pyodbc
 requests
-bcrypt
+datetime
+pytest

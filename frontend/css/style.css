@@ -258,6 +258,115 @@ a:focus {
   text-decoration: underline;
 }
 
+.sign_up_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Make sure it takes at least the full height of the viewport */
+}
+
+.sign_up_section .container {
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.sign_up_section h3 {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#signup-form {
+  background: transparent;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.form-group input {
+  margin-bottom: 1rem; /* space out the form inputs */
+}
+
+#signup-form .btn-primary {
+  background-color: green;
+  border-color: green;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+#signup-form .btn-primary:hover {
+  background-color: darkgreen;
+  border-color: darkgreen;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sign_up_section .container {
+    padding: 1rem;
+  }
+}
+
+.login_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Make sure it takes at least the full height of the viewport */
+}
+
+.login_section .container {
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.login_section h3 {
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#login-form {
+  background: transparent;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.form-group input {
+  margin-bottom: 1rem; /* space out the form inputs */
+}
+
+#login-form .btn-primary {
+  background-color: green;
+  border-color: green;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+#login-form .btn-primary:hover {
+  background-color: darkgreen;
+  border-color: darkgreen;
+}
+
+#signup-link {
+  color: green;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .login .container {
+    padding: 1rem;
+  }
+}
 
 #upload-instruct a {
     background: none;  /* No background */

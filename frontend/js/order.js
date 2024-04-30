@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   updateStock('fuel', 'stock_fuel');
 });
 
-const localFunctionUrl  = 'http://localhost:7071/api/Order'
+const localFunctionUrl  = 'http://127.0.0.1:7071/api/Order'
 
 function updateStock(itemName, elementId) {
   fetch(`${localFunctionUrl}?item=${encodeURIComponent(itemName)}`)
@@ -21,7 +21,12 @@ function updateStock(itemName, elementId) {
 }
 
 function orderItem(itemName, quantity) {
+  const itemKey = itemName.toLowerCase().replace(/ /g, '_');
+  var messageDiv = document.getElementById('message_' + itemKey);
+  messageDiv.textContent = "Processing order..."
+
   const data = { item: itemName, quantity: quantity };
+  
 
   fetch(localFunctionUrl, {
     method: 'POST',
@@ -40,6 +45,7 @@ function orderItem(itemName, quantity) {
   .then(data => {
     console.log(data);
     let elementId = 'stock_' + itemName.toLowerCase().replace(' ', '_'); // Assuming the itemName format needs adjusting
+    messageDiv.textContent = ""
     updateStock(itemName.toLowerCase(), elementId);
   })
   .catch(error => {

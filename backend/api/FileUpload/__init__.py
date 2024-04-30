@@ -6,6 +6,7 @@ from azure.storage.blob import BlobServiceClient, BlobClient, generate_blob_sas,
 import datetime
 import magic
 from pathvalidate import sanitize_filename
+import re
 import requests
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
@@ -34,8 +35,10 @@ def create_service_sas_blob(blob_client: BlobClient, blob_service_client: BlobSe
 def sanitize_and_format_filename(original_name):
     # Sanitize filename to remove invalid characters
     sanitized = sanitize_filename(original_name, platform="auto")
-     # Split the filename from its extension
-    base, ext = sanitized.rsplit('.', 1)
+    # Regex to remove special characters
+    sanitized = re.sub(r'[!@#$%^&*(){}\[\]:;"\'`\\|?/><,]+', '', sanitized)
+    # Split the filename from its extension
+    base, ext = os.path.splitext(sanitized)
     # Remove all dots from the base part
     base = base.replace('.', '')
     # Append a UUID to ensure uniqueness
@@ -43,7 +46,6 @@ def sanitize_and_format_filename(original_name):
 
     return sanitized
 
-#@app.route(route="fileupload", methods=['POST'])
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("\nPython HTTP trigger function processed a request\n")
 
