@@ -7,7 +7,6 @@ import time
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
-# Set DB connection string
 connection_string = os.getenv('SQL_CONN_STR')
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
