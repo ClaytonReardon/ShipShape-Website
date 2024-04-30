@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
   updateStock('fuel', 'stock_fuel');
 });
 
-const localFunctionUrl  = 'https://shipshapefa.azurewebsites.net/api/Order?clientId=apim-ShipShapeFA-ApiM'
+const localFunctionUrl  = 'https://shipshapefa.azurewebsites.net/api/order'
 
 function updateStock(itemName, elementId) {
   fetch(`${localFunctionUrl}?item=${encodeURIComponent(itemName)}`)

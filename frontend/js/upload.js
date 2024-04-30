@@ -1,4 +1,4 @@
-const functionUrl = "https://shipshapefa.azurewebsites.net/api/FileUpload?clientId=apim-ShipShapeFA-ApiM";
+const functionUrl = "https://shipshapefa.azurewebsites.net/api/fileupload";
 
 // upload.js
 document.addEventListener('DOMContentLoaded', function() {
