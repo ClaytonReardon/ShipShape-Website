@@ -25,6 +25,7 @@ class TestInventoryFunction(unittest.TestCase):
     @patch('api.Order.__init__.pyodbc.connect')
     @patch.dict(os.environ, {'SQL_CONN_STR': 'fake_connection_string'})
     def test_post_order_success(self, mock_connect):
+        # Mock set up
         mock_conn = MagicMock()
         mock_cursor = MagicMock()
         mock_connect.return_value = mock_conn
