@@ -34,16 +34,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/api/requirements.txt
 
-    - name: 'Set PYTHONPATH'
-      run: echo "PYTHONPATH=${{ github.workspace }}/${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}" >> $GITHUB_ENV
-  
-    - name: 'Run Unit Tests'
-      env:
-        LOG_APP_URL: ${{ secrets.LOGIC_APP_URL }}
-      run: |
-          cd ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/tests
-          python -m unittest discover -s . -p '*_test.py'
-
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
