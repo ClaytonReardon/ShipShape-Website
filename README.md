@@ -1,4 +1,8 @@
-# Azure-FileShare-WebApp
-When cloning use: `git clone --recurse-submodules`
+# Overview
+In this section of my Azure Administration project I will be building the website for my fictional company, ShipShape. This section is the interface that space ship pilots will interact with to resupply and repair their ships. This will require them to upload their ship's status report as well as place orders for the supplies they need. 
 
-A simple web app where user's can upload files to Azure Blob Storage and be given a time sensitive link to share. Also hosts a simple store front linked to an Azure CosmosDB
+I will build a Static Web App hosted in Azure. It will use 2 Azure Functions written in python, one to facilitate uploading files to blob storage, and then returning an SAS URL, and another to query and update an SQL database. The file upload function will also link with a Logic App that will use ARM templates hosted in a Github repo to deploy network infrastructure and VMs based on the contents of the uploaded file. Once the VMs are deployed they will use the VM Custom Script Extension to execute a specified task upon boot up. The SQL Function App will also link to a Logic App to send order confirmation emails. Both Function and Logic Apps will use managed identities to follow the principal of least privilege. The whole frontend and backend of the site will be integrated with a Github workflow to provide a CI/CD pipeline. This means I will be able to edit the files locally, push them to Github, and the changes made to the static site and functions will be automatically deployed to Azure. This is part of my ongoing project for the [AZ-104 Azure Administration certification](https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/?practice-assessment-type=certification) to gain hands on experience with the objectives of that exam. This section of the project will focus on the "Manage Azure identities and governance", "Implement and manage storage", "Deploy and manage Azure compute resources", "Implement and manage virtual networking" objectives of the certification.
+### Topology
+The topology for this section of the project:
+
+![diagram](Writeup/screenshots/diagram1.png)
