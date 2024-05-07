@@ -1,4 +1,6 @@
 # Overview
+***The full writeup can be found in the Writeup directory***
+
 In this section of my Azure Administration project I will be building the website for my fictional company, ShipShape. This section is the interface that space ship pilots will interact with to resupply and repair their ships. This will require them to upload their ship's status report as well as place orders for the supplies they need. 
 
 In this section of my Azure Administration project I want to showcase and detail the setup and deployment of a Static Web utilizing Azure Functions, Logic Apps, SQL Server, and various other technologies. I want to get hands on experience with the skills learned and demonstrated in the [AZ-104 Azure Administration certification](https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/?practice-assessment-type=certification). This section will  focus on the *"Manage Azure identities and governance", "Implement and manage storage", "Deploy and manage Azure compute resources"* and *"Implement and manage virtual networking"* section of the exam. 
